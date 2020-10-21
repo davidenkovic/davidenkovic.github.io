@@ -531,11 +531,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">CheckBoxProgressbarObserver</span><span class="p">.</span><span class="n">IsChecked</span><span class="p">.</span><span class="n">Value</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="n">_numberGenerator</span><span class="p">.</span><span class="n">NumberChangedHandler</span> <span class="o">+=</span> <span class="n">DisplayNumberBar</span><span class="p">;</span> <span class="c1">// Observer wird geadded</span>
+        <span class="n">_numberGenerator</span><span class="p">.</span><span class="n">NumberChangedHandler</span> <span class="o">+=</span> <span class="n">DisplayNumberBar</span><span class="p">;</span> <span class="c1">// register Observer</span>
     <span class="p">}</span>
     <span class="k">else</span>
     <span class="p">{</span>
-        <span class="n">_numberGenerator</span><span class="p">.</span><span class="n">NumberChangedHandler</span> <span class="o">-=</span> <span class="n">DisplayNumberBar</span><span class="p">;</span> <span class="c1">// Observer wird removed</span>
+        <span class="n">_numberGenerator</span><span class="p">.</span><span class="n">NumberChangedHandler</span> <span class="o">-=</span> <span class="n">DisplayNumberBar</span><span class="p">;</span> <span class="c1">// unregister Observer</span>
         <span class="n">ProgressBarNumber</span><span class="p">.</span><span class="n">Value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span></code></pre>
@@ -549,7 +549,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Zwei Schreibweisen &#8594; Query Syntax und Extension Method Syntax</p>
 </div>
 <div class="sect3">
-<h4 id="_query_syntax"><a class="anchor" href="#_query_syntax"></a>2.2.1. Query Syntax</h4>
+<h4 id="_query_syntax_old"><a class="anchor" href="#_query_syntax_old"></a>2.2.1. Query Syntax (Old)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="c++"><span class="n">IEnumerable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">num</span> <span class="n">Query1</span> <span class="o">=</span>
@@ -561,7 +561,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_method_syntax"><a class="anchor" href="#_method_syntax"></a>2.2.2. Method Syntax</h4>
+<h4 id="_method_syntax_new"><a class="anchor" href="#_method_syntax_new"></a>2.2.2. Method Syntax (New)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="c++"><span class="n">IEnumerable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">num</span> <span class="n">Query2</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">.</span>
@@ -598,7 +598,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-21 18:34:25 UTC
+Last updated 2020-10-21 18:55:56 UTC
 </div>
 </div>
 <style>
