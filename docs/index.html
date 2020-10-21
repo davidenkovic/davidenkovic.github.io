@@ -444,9 +444,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_4ahif_wintersemester">1. 4AHIF Wintersemester</a>
+<li><a href="#_4ahif_wintersemester">1. 4AHIF Wintersemester</a></li>
+<li><a href="#_proo_c_quiz">2. PROO C# Quiz</a>
 <ul class="sectlevel2">
-<li><a href="#_proo_c">1.1. PROO C#</a></li>
+<li><a href="#_observer">2.1. Observer</a></li>
+<li><a href="#_linq">2.2. Linq</a></li>
+<li><a href="#_read_csv_with_linq">2.3. Read csv with Linq</a></li>
 </ul>
 </li>
 </ul>
@@ -456,10 +459,138 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect1">
 <h2 id="_4ahif_wintersemester"><a class="anchor" href="#_4ahif_wintersemester"></a>1. 4AHIF Wintersemester</h2>
 <div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_proo_c_quiz"><a class="anchor" href="#_proo_c_quiz"></a>2. PROO C# Quiz</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_proo_c"><a class="anchor" href="#_proo_c"></a>1.1. PROO C#</h3>
+<h3 id="_observer"><a class="anchor" href="#_observer"></a>2.1. Observer</h3>
 <div class="paragraph">
-<p><a href="https://davidenkovic.github.io/docs/c#-quiz-23-10.html">C# Quiz 23.10.20</a></p>
+<p>Observable(Subject): Der Beobachtete</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Register/Subscribe &#8594; Beobachter meldet sich an</p>
+</li>
+<li>
+<p>Unregister/Unsubscribe &#8594; Beobachter meldet sich ab</p>
+</li>
+<li>
+<p>Notify &#8594; alle Beobachter werden über ein Event verständigt</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Observer: Ein Beobachter</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Notify/Update &#8594; Behandlung ds Events</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_numberobserver_delegates"><a class="anchor" href="#_numberobserver_delegates"></a>2.1.1. NumberObserver (Delegates)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">namespace</span> <span class="n">Observer</span><span class="p">.</span><span class="n">Numbers</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">delegate</span> <span class="kt">void</span> <span class="n">NumberChangedHandler</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">);</span> <span class="c1">//update</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">NumberGenerator</span> <span class="o">:</span> <span class="n">Observable</span>
+    <span class="p">{</span>
+        <span class="k">private</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">MAX</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="k">private</span> <span class="n">readonly</span> <span class="n">Random</span> <span class="n">_random</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="p">();</span>
+        <span class="k">public</span> <span class="n">NumberChangedHandler</span> <span class="n">NumberChangedHandler</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="c1">//update -&gt; gibt die NextNumber aus</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="n">NextNumber</span> <span class="p">{</span> <span class="n">get</span><span class="p">;</span> <span class="k">private</span> <span class="n">set</span><span class="p">;</span> <span class="p">}</span>
+
+        <span class="k">public</span> <span class="kt">void</span> <span class="n">Start</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">NextNumber</span> <span class="o">=</span> <span class="n">_random</span><span class="p">.</span><span class="n">Next</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">MAX</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+                <span class="n">NumberChangedHandler</span><span class="p">(</span><span class="n">NextNumber</span><span class="p">);</span>
+                <span class="c1">//notify -&gt; es wird die NextNumber an das update weitergeleitet</span>
+                <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wpf_numberobserver_events"><a class="anchor" href="#_wpf_numberobserver_events"></a>2.1.2. Wpf NumberObserver (Events)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">private</span> <span class="kt">void</span> <span class="nf">CheckBoxClickedBar</span><span class="p">(</span><span class="n">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">RoutedEventArgs</span> <span class="n">e</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">CheckBoxProgressbarObserver</span><span class="p">.</span><span class="n">IsChecked</span><span class="p">.</span><span class="n">Value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_numberGenerator</span><span class="p">.</span><span class="n">NumberChangedHandler</span> <span class="o">+=</span> <span class="n">DisplayNumberBar</span><span class="p">;</span> <span class="c1">// Observer wird geadded</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">_numberGenerator</span><span class="p">.</span><span class="n">NumberChangedHandler</span> <span class="o">-=</span> <span class="n">DisplayNumberBar</span><span class="p">;</span> <span class="c1">// Observer wird removed</span>
+        <span class="n">ProgressBarNumber</span><span class="p">.</span><span class="n">Value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_linq"><a class="anchor" href="#_linq"></a>2.2. Linq</h3>
+<div class="paragraph">
+<p>Zwei Schreibweisen &#8594; Query Syntax und Extension Method Syntax</p>
+</div>
+<div class="sect3">
+<h4 id="_query_syntax"><a class="anchor" href="#_query_syntax"></a>2.2.1. Query Syntax</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="n">IEnumerable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">num</span> <span class="n">Query1</span> <span class="o">=</span>
+            <span class="n">from</span> <span class="n">num</span> <span class="n">in</span> <span class="n">numbers</span>
+            <span class="n">where</span> <span class="n">num</span><span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="n">orderby</span> <span class="n">num</span>
+            <span class="n">select</span> <span class="n">num</span><span class="p">;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_method_syntax"><a class="anchor" href="#_method_syntax"></a>2.2.2. Method Syntax</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="n">IEnumerable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">num</span> <span class="n">Query2</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">.</span>
+        <span class="n">Where</span><span class="p">(</span><span class="n">num</span> <span class="o">=&gt;</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">).</span><span class="n">OrderBy</span><span class="p">(</span><span class="n">n</span> <span class="o">=&gt;</span> <span class="n">n</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Das resultat ist IEnumerable&lt;T&gt; und T ist der Typ der Projektion. In der Query ist die Projektion das was in dem Select steht z.B &#8230;&#8203; <code>select num;</code></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_read_csv_with_linq"><a class="anchor" href="#_read_csv_with_linq"></a>2.3. Read csv with Linq</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">public</span> <span class="kt">void</span> <span class="nf">ReadStockEntries</span><span class="p">(</span><span class="n">string</span> <span class="n">fileName</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">var</span> <span class="n">fullName</span> <span class="o">=</span> <span class="n">MyFile</span><span class="p">.</span><span class="n">GetFullNameInApplicationTree</span><span class="p">(</span><span class="n">fileName</span><span class="p">);</span>
+            <span class="n">stock</span> <span class="o">=</span> <span class="n">File</span><span class="p">.</span><span class="n">ReadAllLines</span><span class="p">(</span><span class="n">fullName</span><span class="p">)</span>
+                                    <span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">a</span> <span class="o">=&gt;</span> <span class="n">a</span><span class="p">.</span><span class="n">Split</span><span class="p">(</span><span class="sc">';'</span><span class="p">))</span>
+                                    <span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">cols</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="n">StockEntry</span>
+                                    <span class="p">{</span>
+                                        <span class="n">Date</span> <span class="o">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">cols</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                                        <span class="n">ProductName</span> <span class="o">=</span> <span class="n">cols</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                        <span class="n">QuantityChange</span> <span class="o">=</span> <span class="n">Convert</span><span class="p">.</span><span class="n">ToInt32</span><span class="p">(</span><span class="n">cols</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+                                    <span class="p">})</span>
+                                    <span class="p">.</span><span class="n">ToList</span><span class="p">();</span>
+        <span class="p">}</span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -467,8 +598,219 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-21 17:05:47 UTC
+Last updated 2020-10-21 18:34:25 UTC
 </div>
 </div>
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge .cm {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cp {
+  color: #999999;
+  font-weight: bold;
+}
+pre.rouge .c1 {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cs {
+  color: #999999;
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+pre.rouge .gd {
+  color: #000000;
+  background-color: #ffdddd;
+}
+pre.rouge .ge {
+  color: #000000;
+  font-style: italic;
+}
+pre.rouge .gr {
+  color: #aa0000;
+}
+pre.rouge .gh {
+  color: #999999;
+}
+pre.rouge .gi {
+  color: #000000;
+  background-color: #ddffdd;
+}
+pre.rouge .go {
+  color: #888888;
+}
+pre.rouge .gp {
+  color: #555555;
+}
+pre.rouge .gs {
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #aaaaaa;
+}
+pre.rouge .gt {
+  color: #aa0000;
+}
+pre.rouge .kc {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kd {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kn {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kp {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kr {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kt {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .k, pre.rouge .kv {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .mf {
+  color: #009999;
+}
+pre.rouge .mh {
+  color: #009999;
+}
+pre.rouge .il {
+  color: #009999;
+}
+pre.rouge .mi {
+  color: #009999;
+}
+pre.rouge .mo {
+  color: #009999;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+  color: #009999;
+}
+pre.rouge .sb {
+  color: #d14;
+}
+pre.rouge .sc {
+  color: #d14;
+}
+pre.rouge .sd {
+  color: #d14;
+}
+pre.rouge .s2 {
+  color: #d14;
+}
+pre.rouge .se {
+  color: #d14;
+}
+pre.rouge .sh {
+  color: #d14;
+}
+pre.rouge .si {
+  color: #d14;
+}
+pre.rouge .sx {
+  color: #d14;
+}
+pre.rouge .sr {
+  color: #009926;
+}
+pre.rouge .s1 {
+  color: #d14;
+}
+pre.rouge .ss {
+  color: #990073;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .dl {
+  color: #d14;
+}
+pre.rouge .na {
+  color: #008080;
+}
+pre.rouge .bp {
+  color: #999999;
+}
+pre.rouge .nb {
+  color: #0086B3;
+}
+pre.rouge .nc {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .no {
+  color: #008080;
+}
+pre.rouge .nd {
+  color: #3c5d5d;
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #800080;
+}
+pre.rouge .ne {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nn {
+  color: #555555;
+}
+pre.rouge .nt {
+  color: #000080;
+}
+pre.rouge .vc {
+  color: #008080;
+}
+pre.rouge .vg {
+  color: #008080;
+}
+pre.rouge .vi {
+  color: #008080;
+}
+pre.rouge .nv, pre.rouge .vm {
+  color: #008080;
+}
+pre.rouge .ow {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .o {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .w {
+  color: #bbbbbb;
+}
+pre.rouge {
+  background-color: #f8f8f8;
+}
+</style>
 </body>
 </html>
