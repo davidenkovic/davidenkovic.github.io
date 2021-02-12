@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Logo Webpage">
+    <meta name="author" content="David Ignjatovic">
+    <title>Logo Kontakt</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
+
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/test.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- navbar -->
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid" >
+            <a class="navbar-brand" href="../index.html">Logo Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="neues.html">Neues</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="covid.html">COVID-19</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="kontakt.html">Kontakt</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="service.html">Service</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="datenschutz.html" >Datenschutz</a>
+                    </li>
+                </ul>
+                <img src="../images/logo.png" alt="Logo" class = "logo-in-middle">
+                <form class="d-flex">
+
+                    <!--<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button><-->
+                </form>
+
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- slider -->
+
+<main>
+
+    <div id="myCarousel" class="carousel slide" data-bs-ride="">
+        <div class="carousel-indicators" >
+            <button type="button"  data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner" >
+            <div class="carousel-item active" >
+                <div class="overlay-image" style="background-image:url(../images/bild-2.jpg);"></div>
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <h1>Neues</h1>
+                        <p>Die neusten Artikel und Aktionen</p>
+                        <p><a class="btn btn-lg btn-primary" href="neues.html">Zu den Artikel</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Kontakt</h1>
+                        <p>Wie sie uns erreichen können</p>
+                        <p><a class="btn btn-lg btn-primary" href="kontakt.html">Zu den Kontakten</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+
+                <div class="container">
+                    <div class="carousel-caption text-end">
+                        <h1>Service</h1>
+                        <p>Über uns und unser Service</p>
+                        <p><a class="btn btn-lg btn-primary" href="service.html">Zu den Service</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="container marketing">
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading">
+                    Über uns
+                </h2>
+                <br>
+                <p  class="lead">
+                    Die Firma LOGO hat sich aus einem Ausstattungsbetrieb für Kindergärten entwickelt,
+                    daher auch unsere jahrelange Erfahrung auf dem Gebiet des Kindergarten und Institutionsbedarfes.
+                </p>
+                <br>
+                <p class="lead">
+                    Die Grundidee war, wertvolles Spielzeug für Kindergärten
+                    auch für Privatpersonen anzubieten.
+                    Aus einem kleinen Geschäft in der Christian Coulinstraße 1980 hat sich
+                    die Firma LOGO dann 1984 in der Stockhofstraße entwickelt,
+                    wo wir auch heute noch unseren Firmensitz haben.
+                </p>
+                <h2 class="featurette-heading">
+                    Zu unseren Kunden dürfen wir zählen:
+                    sämtliche oberösterreichische:
+                </h2>
+                <br>
+                <ul>
+                    <li>Kindergärten</li>
+                    <li>Krabbelstuben und Horte</li>
+                    <li>Krankenhäuser</li>
+                    <li>Seniorenheime</li>
+                    <li>Mutterberatungsstellen</li>
+                    <li>Ergotherapeuten</li>
+                    <li>Logopäden und Kinesiologen</li>
+                    <li>Kinder- Ärzte</li>
+                </ul>
+                sowie viele zufriedene Stammkunden
+                <br>
+            </div>
+        </div>
+        <hr class="featurette-divider">
+    </div>
+    <footer class="container">
+        <p class="float-end"><a href="../index.html">zurück nach oben</a></p>
+        Impressum © 2020 Logo GmbH - Stockhofstraße 5 - 4020 Linz - Austria <br>
+        info@logospiel.at - Tel. 0043 732/66 48 98 - Fax: 0043 732/650 265 - Kundenparkplätze im Hof vorhanden!
+    </footer>
+</main>
+
+
+<script src="../js/script.js"></script>
+
+
+</body>
+</html>
